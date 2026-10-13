@@ -3,6 +3,7 @@ function [x, z, xc, zc, dzc, beta] = naca4(code, nPanels, closedTE)
 %   code     : the 4 digits as text, e.g. '2412'
 %   nPanels  : number of panels (even number)
 %   closedTE : true -> sharp trailing edge (default)
+%   Reference: Ladson & Brooks, NASA TM X-3284 (1975), pp. 3-4 and 6-7.
 
 if nargin < 3 %is less than 3 inputs is given create closedTE
     closedTE = true;
@@ -18,7 +19,7 @@ if numel(code) ~= 4 || any(~isstrprop(code, 'digit'))
 end
 
 if mod(nPanels, 2) ~= 0  % "if the remainder is NOT 0" = "if it's odd"
-    error('nPanels mus be even');
+    error('nPanels must be even');
 end
 
 m = str2double(code(1))   / 100;   % max camber
